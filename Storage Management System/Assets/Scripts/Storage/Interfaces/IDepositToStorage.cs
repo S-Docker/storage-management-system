@@ -3,26 +3,24 @@ using System.Collections.Generic;
 
 public interface IDepositToStorage
 {
+    ItemBase GetItem(int slot);
     int AddItem(ItemBase itemToAdd, int quantityToAdd);
     int AddItem(ItemBase itemToAdd, int quantityToAdd, int newSlot);
-    void MoveItem();
-    void SwapItem();
+    void MoveItem(int startingSlot, int newSlot);
+    void SwapItem(int slotA, int slotB);
 
-    /**void GetQuantity();
-    void SetQuantity();
-    AddQuantity(int slot, int quantityToAdd);
-    void RemoveQuantity();
-    void RemoveAllQuantity();*/
-    int FillQuantity(int slot, int quantityToAdd);
+    int GetQuantity(int slot);
+    void SetQuantity(int slot, int amount);
 
-    /**
-    int GetMaximumSlots();
-    void SetMaximumSlots();
-
-    bool IsSlotEmpty();
-    bool IsStorageFull();*/
     int AvailableSlotsCount();
     int CalculateSlotsNeeded(double quantity, double maximumStack);
+    int GetMaximumSlots();
+    void SetMaximumSlots(int numOfSlots);
 
+    void RemoveQuantity(int slot, int amount);
+    int FillExistingQuantity(int slot, int quantityToAdd);
     void GetPartialStacks(ItemBase item, out int count, out List<int> indexes);
+
+    bool IsSlotEmpty(int slot);
+    bool IsStorageFull();
 }

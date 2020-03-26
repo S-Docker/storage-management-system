@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
-public class StorageData : IStorageData {
+public class StorageData : MonoBehaviour, IStorageData  {
 
     protected ItemQuantity[] _storage;
 
     // Storage slot variables
+    [SerializeField]
     protected int _storageSlotsInUse;
+    [SerializeField]
     protected int _maximumStorageSlots = 24;
 
     #region ---------- Constructors ----------
@@ -16,7 +19,7 @@ public class StorageData : IStorageData {
         _storage = new ItemQuantity[_maximumStorageSlots];
     }
 
-    public StorageData(int maximumSlots) {
+    public void StorageDataConstructor(int maximumSlots) {
         _storageSlotsInUse = 0;
         _maximumStorageSlots = maximumSlots;
         _storage = new ItemQuantity[_maximumStorageSlots];
